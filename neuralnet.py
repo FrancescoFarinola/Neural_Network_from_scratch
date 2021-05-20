@@ -1,7 +1,5 @@
 import numpy as np
-import tensorflow.keras.datasets.mnist as mnist
 import sys
-import random
 
 
 class Layer:

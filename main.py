@@ -157,11 +157,10 @@ def best_opt():
     for i, opt in enumerate(optimizer):
         print('Training with ' + opt + ' optimizer:')
         model.append(nn.NeuralNetwork())
-        #model.add(nn.Layer(34, activation='relu'))
         model[i].add(nn.Layer(32, activation='relu'))
         model[i].add(nn.Layer(32, activation='relu'))
         model[i].add(nn.Layer(1, activation='linear'))
-        stop = nn.EarlyStopping(patience=5, delta=0.0001, restore_weights=True)
+        stop = nn.EarlyStopping(patience=5, delta=1e-3, restore_weights=True)
         model[i].compile(epochs=30, learning_rate=1e-3, loss='mse', optimizer=opt, earlystop=stop)
         model[i].fit(x_train, y_train, x_val, y_val, batch_size=32)
         histories[opt] = model[i].history
